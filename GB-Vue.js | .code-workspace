@@ -2,6 +2,9 @@
     "folders": [
         {
             "path": "."
+        },
+        {
+            "path": "../../../../../Applications/MAMP/htdocs"
         }
     ],
     "settings": {
