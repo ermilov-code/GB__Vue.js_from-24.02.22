@@ -1,4 +1,4 @@
-# gb__vue-1.1-calculator
+# dev-gb__vue-1.1-calculator
 
 ## Project setup
 ```

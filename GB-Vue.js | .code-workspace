@@ -5,6 +5,9 @@
         },
         {
             "path": "../../../../../Applications/MAMP/htdocs"
+        },
+        {
+            "path": "../1.1-folder-for-development-on-vue"
         }
     ],
     "settings": {
