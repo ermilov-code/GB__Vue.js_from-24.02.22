@@ -8,6 +8,12 @@
         },
         {
             "path": "../1.1-folder-for-development-on-vue"
+        },
+        {
+            "path": "../GB-JS-level_2-05.20_START-30.06.21"
+        },
+        {
+            "path": "../ap-store"
         }
     ],
     "settings": {
