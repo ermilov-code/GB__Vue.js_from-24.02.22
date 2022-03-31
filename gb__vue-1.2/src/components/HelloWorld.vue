@@ -7,18 +7,49 @@
     <div class="display">
       <input v-model.number="operand1" type="number" />
       <input v-model.number="operand2" type="number" />
-
-      <p class="result">{{ result }}</p>
-      <p class="result">{{ error }}</p>
     </div>
-    <div class="keyboard">
-      <button @click="calculate('+')">+</button>
-      <button @click="calculate('-')">-</button>
-      <button @click="calculate('/')">/</button>
-      <button @click="calculate('*')">*</button>
 
+    <div class="keyboard">
+      <!-- :disabled="getBtnStatusDisabled(operand)" -->
+
+      <button
+        v-for="(operand, idx) in operands"
+        :key="operand"
+        :name="operand"
+        :id="idx + 1"
+        class="btns"
+        @click="calculate(operand)"
+      >
+        {{ operand }}
+      </button>
+
+      <!-- <button @click="calculate('+')">+</button>
+      <button @click="calculate('-')">-</button>
+      <button @click="calculate('/')">/</button> -->
+      <!-- <button @click="calculate('/')" :disabled="operand2 === 0">/</button> -->
+      <!-- <button @click="calculate('*')">*</button>
       <button @click="exponentiation(operand1, operand2)">x²</button>
-      <button @click="integerDivision(operand1, operand2)">integer</button>
+      <button @click="integerDivision(operand1, operand2)">integer</button> -->
+    </div>
+
+    <p class="result">{{ result }}</p>
+
+    <div class="errors" v-if="error">Ошибка: {{ error }}</div>
+    <!-- <div class="errors" v-show="error">Ошибка: {{ error }}</div> -->
+
+    <div class="strange-message">
+      <template v-if="result < 0">Получилось отрицательное число</template>
+      <template v-else-if="result < 100">Результат в первой сотне</template>
+      <template v-else>Получилось слишком большое число</template>
+    </div>
+
+    <div>____________</div>
+    <br />
+
+    <div class="arr">
+      <div v-for="(item, index) in myCollection" :key="index">
+        {{ index }} - {{ item }}
+      </div>
     </div>
   </div>
 </template>
@@ -36,9 +67,11 @@ export default {
   data() {
     return {
       message: "Hello Vue",
+      myCollection: [1, 2, 3, 4, 5, 6],
+      operands: ["+", "-", "/", "*"],
       operand1: 0,
       operand2: 0,
-      error: '',
+      error: "",
       result: 0,
     };
   },
@@ -92,6 +125,13 @@ export default {
     integerDivision(op1, op2) {
       let intResult = op1 / op2;
       this.result = Math.trunc(intResult);
+    },
+    // Disabled кнопку, когда деление на 0
+    getBtnStatusDisabled(operation) {
+      if (operation === "/" && this.operand2 === 0) {
+        return true;
+      }
+      return false;
     },
   },
 };
